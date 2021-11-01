@@ -1,0 +1,15 @@
+<li class="uk-flex uk-flex-between">
+    <p hx-swap="outerHTML" hx-get="/edit/{{ workflow.id }}"> {{ workflow.name }} {{workflow.status}}</p>
+    <form id="workflowForm" class="uk-form-horizontal" hx-post="/add_workflow_run/{{ workflow.id }}" hx-swap="beforeend" hx-target="#workflowRunItems{{ workflow.id }}" hx-trigger="submit">
+      <div class="uk-margin uk-inline uk-width-1-1" uk-margin>
+        <span class="uk-form-icon" uk-icon="icon: plus"></span>
+        <input id="contentInput" autocomplete="off" class="uk-input" type="text" name="content" placeholder="New workflow run">
+      </div>
+    </form>
+    <button class="uk-icon-button" uk-icon="icon: trash" hx-delete="/delete/{{ workflow.id }}"></button><br>
+    <ul id="workflowRunItems{{ workflow.id }}" class="uk-list uk-list-divider" hx-target="closest li" hx-swap="outerHTML">
+      {% for workflow_run in workflow.workflow_runs %}
+        {% include 'workflow/run.html' with context %}
+      {% endfor %}
+    </ul>
+</li>

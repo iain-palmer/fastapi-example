@@ -1,0 +1,10 @@
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay"></div>
+	<div class="modal-content">
+		<h1>Results</h1>
+		<img src="/get_results_image/{{ workflow_run.id }}">
+		<br>
+		<br>
+		<button _="on click trigger closeModal">Close</button>
+	</div>
+</div>
